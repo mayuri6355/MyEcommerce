@@ -8,7 +8,7 @@ import authContext from "../AuthProvider/AuthContext";
 import MultiRangeSlider from "multi-range-slider-react";
 import Footer from "../Footer/Footer";
 import Nodata from "../NoData/Nodata";
-import {AiOutlineHeart} from "react-icons/ai";
+import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
 
 
 function CategoryDetails() {
@@ -19,11 +19,21 @@ function CategoryDetails() {
     const [maxValue, set_maxValue] = useState(10000);
     const [wish, setWish] = useState(JSON.parse(localStorage.getItem("wish")) || []);
 
-    const addToWishList = (item = {}) => {
-        setWish((prev) => ([...prev,item]));
-        localStorage.setItem("wish", JSON.stringify([...wish, item]))
+    const selectWish = (wish || []).map((e) => e.id);
 
+    const addToWishList = (item = {},index) => {
+        if (selectWish.includes(item.id)) {
+            let list = wish;
+            list.splice(index, 1);
+            setWish([...list]);
+            localStorage.setItem("wish", JSON.stringify([...list]))
+
+        } else {
+            setWish((prev) => ([...prev,item]));
+            localStorage.setItem("wish", JSON.stringify([...wish, item]))
+        }
     };
+
 
     const handleInput = (e) => {
         set_minValue(e.minValue);
@@ -130,7 +140,11 @@ function CategoryDetails() {
                                                     <div className="wcf-left"><span
                                                         className="price">{item.price}$</span></div>
                                                     <div className="wcf-right"><Link to="" className="">
-                                                        <AiOutlineHeart onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
+                                                        {selectWish.includes(item.id)
+                                                            ? <AiFillHeart onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
+                                                            :  <AiOutlineHeart  onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
+                                                        }
+
                                                     </Link></div>
                                                 </div>
                                             </div>

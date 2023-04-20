@@ -159,32 +159,34 @@ const AddToCart = () => {
                             <div className="col-md-4">
                                 <div className="card mb-4">
                                     <div className="card-header py-3">
-                                        <h5 className="mb-0"  style={{fontWeight:"bold"}}>Summary</h5>
                                     </div>
                                     <div className="card-body">
 
-                                        <ul className="list-group list-group-flush">
-                                            {(items || []).map((item, index) => (
-                                                <li key={index}
-                                                    className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                                    {item.title}
-                                                    <span>{item.price * item.totalItems || item.price}</span>
+                                        <div>
+                                            <table>
+                                                <th colSpan={2}><b>Summary</b></th>
+                                                <tbody>
+                                                {(items || []).map((item, index) => (
+                                                    <tr>
+                                                        <td>{item.title}</td>
+                                                        <td>{item.price * item.totalItems || item.price}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr className="freeshipping">
+                                                    <td >Shipping</td>
+                                                    <td >Free shipping</td>
+                                                </tr>
+                                                <tr >
+                                                    <td><b>SubTotal</b></td>
+                                                    <td><b>${cartPriceTotal}</b></td>
+                                                </tr>
 
-                                                </li>
-                                            ))}
 
+                                                </tbody>
 
-                                            <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                                <div>
-                                                    <strong>Total amount</strong>
-                                                    <strong>
-                                                        <p className="mb-0">(including VAT)</p>
-                                                    </strong>
-                                                </div>
-                                                <span><strong>Total</strong></span>
-                                                <span><strong>${cartPriceTotal}</strong></span>
-                                            </li>
-                                        </ul>
+                                            </table>
+                                        </div>
+
                                         <Link to="/shippingcart">
                                             <button type="button" className="btn btn-success btn-md btn-block">
                                                 Go to checkout

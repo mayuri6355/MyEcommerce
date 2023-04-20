@@ -13,12 +13,31 @@ const WishList = () => {
         setWishData([...wishData]);
         localStorage.setItem("wish", JSON.stringify([...wishData]))
     }
+    const selectWish = (wish || []).map((e) => e.id);
 
-    const addToCart = (wishData = {}) => {
-        setItems((prev) => ([...prev, wishData]));
-        localStorage.setItem("items", JSON.stringify([...items, wishData]))
+    const addToCart = (wishData = {}, index) => {
+
+            setItems((prev) => ([...prev, wishData]));
+            localStorage.setItem("items", JSON.stringify([...items, wishData]))
+        removeFromWishList();
 
     };
+
+
+
+    //
+    // const addToWishList = (item = {},index) => {
+    //     if (selectWish.includes(item.id)) {
+    //         let list = wish;
+    //         list.splice(index, 1);
+    //         setWish([...list]);
+    //         localStorage.setItem("wish", JSON.stringify([...list]))
+    //
+    //     } else {
+    //         setWish((prev) => ([...prev,item]));
+    //         localStorage.setItem("wish", JSON.stringify([...wish, item]))
+    //     }
+    // };
 
     return (
         <div>

@@ -2,25 +2,36 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import './Products.css'
 
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import {AiOutlineHeart} from "react-icons/ai";
+import {AiFillHeart} from "react-icons/ai";
 
 
 const Products = () => {
     const [product, setProduct] = useState("")
     const [wish, setWish] = useState(JSON.parse(localStorage.getItem("wish")) || []);
 
-    const addToWishList = (item = {}) => {
-        setWish((prev) => ([...prev,item]));
-        localStorage.setItem("wish", JSON.stringify([...wish, item]))
+    const selectWish = (wish || []).map((e) => e.id);
 
+    const addToWishList = (item = {},index) => {
+        if (selectWish.includes(item.id)) {
+             let list = wish;
+            list.splice(index, 1);
+            setWish([...list]);
+             localStorage.setItem("wish", JSON.stringify([...list]))
+
+        } else {
+            setWish((prev) => ([...prev,item]));
+            localStorage.setItem("wish", JSON.stringify([...wish, item]))
+        }
     };
+
 
     let initialized=false;
     useEffect(() => {
         if(!initialized){
             initialized=true
-        axios.get("https://api.escuelajs.co/api/v1/products/")
+            axios.get(`https://api.escuelajs.co/api/v1/products/`)
             .then((response) => {
                 setProduct(response.data)
             })
@@ -57,7 +68,10 @@ const Products = () => {
                                                 <div className="wcf-left"><span
                                                     className="price">{item.price}$</span></div>
                                                 <div className="wcf-right"><Link to="" className="">
-                                                    <AiOutlineHeart onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
+                                                    {selectWish.includes(item.id)
+                                                        ? <AiFillHeart onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
+                                                        :  <AiOutlineHeart  onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
+                                                    }
                                                     </Link></div>
                                             </div>
                                         </div>

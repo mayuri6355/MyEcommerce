@@ -13,6 +13,8 @@ const ProductDetails = () => {
     const [productDetails, setProductDetails] = useState("")
     const params = useParams();
 
+    console.log(params.id)
+
     let [items, setItems] = useState(
         JSON.parse(localStorage.getItem("items")) || []
     );
@@ -45,6 +47,7 @@ const ProductDetails = () => {
     };
 
     const selectProduct = (items || []).map((e) => e.id)
+
 
     return (
         <div>
