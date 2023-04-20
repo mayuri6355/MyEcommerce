@@ -1,0 +1,55 @@
+.gradient-custom {
+    /*background-color: antiquewhite;*/
+
+}
+
+.addtocart_img {
+    width: 45px;
+}
+
+.addtocart_btn {
+    width: 40px;
+    height: 35px;
+
+}
+
+. card_body {
+    gap: 10px;
+    display: grid;
+}
+
+.remove {
+    color: white;
+}
+
+.card-header{
+    background-color: #257af7;
+}
+/**************************************************************/
+
+
+
+.btn.btn-out {
+    outline: 1px solid #fff;
+    outline-offset: -5px
+}
+
+
+
+.btn-light {
+    color: #ffffff;
+    background-color: #e11c1c;
+    border-color: #f8f9fa;
+    font-size: 12px;
+    height: 32px;
+}
+
+.btn-light:hover {
+    color: #ffffff;
+    background-color: #F44336;
+    border-color: #F44336
+}
+
+.btn-apply {
+    font-size: 11px
+}

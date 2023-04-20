@@ -1,0 +1,117 @@
+.search{
+    position: absolute;
+    right: 35%;
+    width: 45%;
+}
+.searchbtn{
+    color: white;
+    background-color: darkgreen;
+}
+.loginbtn {
+    background-color: white;
+    color: blue;
+    border: none;
+    margin: 10px;
+}
+
+.loginbtn:hover{
+    color: blue!important;
+    background-color: lightblue !important;
+}
+
+.signupbtn{
+    background-color: white;
+    border: none;
+    color: blue;
+
+
+}
+.signupbtn:hover{
+   color: blue!important;
+    background-color: lightblue !important;
+}
+.searchicon{
+    position: absolute;
+    right: 22px;
+    top: 5px;
+    color: blue;
+}
+.cart{
+    position: absolute;
+    color: white;
+    right: 11%;
+    top: 15px;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: bold;
+}
+.carticon {
+    right: 191px;
+    color: white;
+    top:24px;
+}
+.cart:hover{
+    color: white;
+}
+.logo_container{
+    margin-left: 25%;
+}
+.Nav {
+    color: white;
+    text-weight:bold;
+}
+
+.Nav:hover{
+    color: black;
+
+}
+
+.cart-count{
+    position: absolute;
+    right: -18px;
+    z-index: 1;
+    top: -12px;
+    padding: 7px;
+    background-color: red;
+    border-radius: 15px;
+    width: 30px;
+    height: 29px;
+    color: white;
+}
+
+
+.wish{
+    position: absolute;
+    color: white;
+    margin-left: 20px;
+    top: 0;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: bold;
+}
+.wish:hover{
+    color: red;
+}
+
+.wish-count{
+    position: absolute;
+    right: -18px;
+    z-index: 1;
+    top: -12px;
+    padding: 7px;
+    background-color: red;
+    border-radius: 15px;
+    width: 30px;
+    height: 29px;
+    color: white;
+
+}
+Select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+
+

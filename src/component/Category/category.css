@@ -1,0 +1,9 @@
+.navlink{
+    font-weight: bold;
+    font-style: normal;
+    color:gray;
+    text-decoration: none;
+}
+.navlink:hover{
+    color:darkblue;
+}

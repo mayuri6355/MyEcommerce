@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i');
+
+
+.wsk-cp-product{
+    background:#fff;
+    padding:15px;
+    border-radius:6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    position:relative;
+    margin:20px auto;
+}
+.wsk-cp-img{
+    position:absolute;
+    top:5px;
+    left:50%;
+    transform:translate(-50%);
+    -webkit-transform:translate(-50%);
+    -ms-transform:translate(-50%);
+    -moz-transform:translate(-50%);
+    -o-transform:translate(-50%);
+    -khtml-transform:translate(-50%);
+    width: 100%;
+    padding: 15px;
+    transition: all 0.2s ease-in-out;
+}
+.wsk-cp-img img{
+    width:100%;
+    transition: all 0.2s ease-in-out;
+    border-radius:6px;
+}
+.wsk-cp-product:hover .wsk-cp-img{
+    top:-40px;
+}
+.wsk-cp-product:hover .wsk-cp-img img{
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.wsk-cp-text{
+    padding-top:90%;
+}
+.wsk-cp-text .category{
+    text-align:center;
+    font-size:12px;
+    font-weight:bold;
+    padding:5px;
+    margin-bottom:45px;
+    position:relative;
+    transition: all 0.2s ease-in-out;
+}
+.wsk-cp-text .category > *{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -khtml-transform: translate(-50%,-50%);
+
+}
+.wsk-cp-text .category > span{
+    padding: 12px 30px;
+    border: 1px solid #313131;
+    background:#212121;
+    color:#fff;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius:27px;
+    transition: all 0.05s ease-in-out;
+
+}
+.wsk-cp-product:hover .wsk-cp-text .category > span{
+    border-color:#ddd;
+    box-shadow: none;
+    padding: 11px 28px;
+}
+.wsk-cp-product:hover .wsk-cp-text .category{
+    margin-top: 0px;
+}
+.wsk-cp-text .title-product{
+    text-align:center;
+}
+.wsk-cp-text .title-product h3{
+    font-size:20px;
+    font-weight:bold;
+    margin:15px auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:100%;
+}
+.wsk-cp-text .description-prod p{
+    margin:0;
+}
+/* Truncate */
+.wsk-cp-text .description-prod {
+    text-align:center;
+    width: 100%;
+    /*height:62px;*/
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom:15px;
+}
+.card-footer{
+    padding: 25px 0 5px;
+    border-top: 1px solid #ddd;
+}
+.card-footer:after, .card-footer:before{
+    content:'';
+    display:table;
+}
+.card-footer:after{
+    clear:both;
+}
+
+.card-footer .wcf-left{
+    float:left;
+
+}
+
+.card-footer .wcf-right{
+    float:right;
+}
+
+.price{
+    font-size:18px;
+    font-weight:bold;
+}
+
+a.buy-btn{
+    display:block;
+    color:#212121;
+    text-align:center;
+    font-size: 18px;
+    width:35px;
+    height:35px;
+    line-height:35px;
+    border-radius:50%;
+    border:1px solid #212121;
+    transition: all 0.2s ease-in-out;
+}
+a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
+    border-color: #FF9800;
+    background: #FF9800;
+    color: #fff;
+    text-decoration:none;
+}
+.wsk-btn{
+    display:inline-block;
+    color:#212121;
+    text-align:center;
+    font-size: 18px;
+    transition: all 0.2s ease-in-out;
+    border-color: #FF9800;
+    background: #FF9800;
+    padding:12px 30px;
+    border-radius:27px;
+    margin: 0 5px;
+}
+.wsk-btn:hover, .wsk-btn:focus, .wsk-btn:active{
+    text-decoration:none;
+    color:#fff;
+}
+.red{
+    color:#F44336;
+    font-size:22px;
+    display:inline-block;
+    margin: 0 5px;
+}
+@media screen and (max-width: 991px) {
+    .wsk-cp-product{
+        margin:40px auto;
+    }
+    .wsk-cp-product .wsk-cp-img{
+        top:-40px;
+    }
+    .wsk-cp-product .wsk-cp-img img{
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+    .wsk-cp-product .wsk-cp-text .category > span{
+        border-color:#ddd;
+        box-shadow: none;
+        padding: 11px 28px;
+    }
+    .wsk-cp-product .wsk-cp-text .category{
+        margin-top: 0px;
+    }
+    a.buy-btn{
+        border-color: #FF9800;
+        background: #FF9800;
+        color: #fff;
+    }
+}
+.zmdi{
+    position: absolute;
+    right: 24px;
+    top: 340px;
+}
+.product{
+    padding: 25px;
+    font-weight: bold;
+    font-style: oblique;
+}
+.product:hover{
+    color: darkblue;
+    cursor: pointer;
+}
+
+
+/*sidebar css*/
+
+aside {
+    color: white;
+    width: 250px;
+    padding-left: 20px;
+    height: 100vh;
+    margin-right: 20px;
+
+}
+
+aside a {
+    font-size: 15px;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    -webkit-tap-highlight-color:transparent;
+    border-radius: 9px;
+    border: 2px solid #cbcbcb;
+    text-align: center;
+}
+
+aside a:hover {
+    color: white;
+    outline: none;
+    background-color: dodgerblue;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+aside a i {
+    margin-right: 5px;
+}
+
+aside a:hover::after {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    bottom: 100%;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    border-bottom-right-radius: 18px;
+    box-shadow: 0 20px 0 0 #fff;
+}
+
+aside a:hover::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    top: 38px;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    border-top-right-radius: 18px;
+    box-shadow: 0 -20px 0 0 #fff;
+}
+
+aside p {
+    margin: 0;
+    padding: 40px 0;
+    font-size: 25px;
+    font-weight: 700;
+    color: black;
+    border-radius: 9px;
+    border: 1px solid #cbcbcb;
+    font-style: normal;
+    text-align: center
+}
+aside p:hover{
+    color: blue;
+}
+
+body {
+    font-family: 'Roboto';
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+.social {
+    height: 0;
+}
+
+.social i:before {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    position: fixed;
+    color: #fff;
+    background: #0077B5;
+    padding: 10px;
+    border-radius: 50%;
+    top:5px;
+    right:5px;
+}
+input{
+    left: 18%;
+}
+
+
+/*slider css*/
+
+.rangeslider_container{
+    color: black;
+    border-radius: 9px;
+    border: 2px solid #cbcbcb;
+    text-align: center;
+}
+.multi-range-slider .bar-inner{
+    background-color:dodgerblue !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+
+
+
+
