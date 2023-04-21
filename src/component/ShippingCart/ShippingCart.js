@@ -1,7 +1,12 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import './Shipping.css';
-import Navigation from "../Navbar/index";
-import authContext from "../AuthProvider/AuthContext";
+import { Formik, Form, Field } from 'formik';
+import { useCreditCardValidator } from 'react-creditcard-validator';
+import { toast } from 'react-toastify';
+
+
+
+
 
 const ShippingCart = () => {
     const items = JSON.parse(localStorage.getItem("items")) || []
@@ -14,29 +19,133 @@ const ShippingCart = () => {
     )
 
 
+    function validateEmail(value) {
+        let error;
+        if (!value) {
+            error = 'This Field Required';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+            error = 'Invalid email address';
+        }
+        return error;
+    }
+
+
+     const required = (value) => value ? "" : "This Field is Required";
+
+
+    function expDateValidate(year) {
+        if (Number(year) > 2035) {
+
+              return 'Expiry Date Year cannot be greater than 2035';
+        }
+        return;
+    }
+
+    const {
+        getCardNumberProps,
+        getCVCProps,
+        getExpiryDateProps,
+        meta: { erroredInputs }
+    } = useCreditCardValidator({ expiryDateValidator: expDateValidate });
+
+    const notify = () =>toast.success('Order Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    });
+
     return (
 
-        <div className="container">
+        <Formik
+            initialValues={{
+                fname: '',
+                lname: '',
+                email:'',
+                houseadd:'',
+                cn:'',
+                city:'',
+                state:'',
+                selection:"",
+                code:'',
+                phone:'',
+                card:"0",
+                cardNumber:'',
+                month:'',
+                year:'',
+                cvv:''
+            }}
+
+
+            onSubmit={(values) => {
+                //console.log(values);
+                notify();
+
+            }}
+        >
+
+            {props => {
+                    const {handleSubmit, errors, touched,values} = props;
+
+                return (
+        <Form onSubmit={handleSubmit} className="container">
             <div className="title">
                 <h2>Product Order Form</h2>
             </div>
             <div className="d-flex">
-                <form className="form1 shipping_form" action method>
+                <div className="form1 shipping_form" action method>
+                   <label className="payment">Personal Info</label>
                     <label>
-                        <span className="fname">First Name <span className="required">*</span></span>
-                        <input type="text" name="fname"/>
+                        <span className="fname">First Name </span>
+                        <Field type="text"  validate={required} name="fname"/>
+                        {errors.fname && touched.fname &&
+                        <p className="text-danger d-flex align-items-start">{errors.fname}</p>}
                     </label>
                     <label>
-                        <span className="lname">Last Name <span className="required">*</span></span>
-                        <input type="text" name="lname"/>
+                        <span className="lname">Last Name</span>
+                        <Field type="text"  validate={required} name="lname"/>
+                        {errors.lname && touched.lname &&
+                        <p className="text-danger d-flex align-items-start">{errors.lname}</p>}
                     </label>
                     <label>
-                        <span>Company Name (Optional)</span>
-                        <input type="text" name="cn"/>
+                        <span>Email Address </span>
+                        <Field type="email" validate={validateEmail} name="email"/>
+                        {errors.email && touched.email &&
+                        <p className="text-danger d-flex align-items-start">{errors.email}</p>}
+                    </label>
+
+                    <label className="payment">Shipping Address</label>
+                    <label>
+                        <span>Street Address </span>
+                        <Field type="text"  validate={required} name="houseadd" placeholder="House number and street name" />
+                        {errors.houseadd && touched.houseadd &&
+                        <p className="text-danger d-flex align-items-start">{errors.houseadd}</p>}
                     </label>
                     <label>
-                        <span>Country <span className="required">*</span></span>
-                        <select name="selection">
+                        <span>Company Name</span>
+                        <Field type="text"  validate={required} name="cn"/>
+                        {errors.cn && touched.cn &&
+                        <p className="text-danger d-flex align-items-start">{errors.cn}</p>}
+                    </label>
+                    <label>
+                        <span>Town / City </span>
+                        <Field type="text"  validate={required} name="city"/>
+                        {errors.city && touched.city &&
+                        <p className="text-danger d-flex align-items-start">{errors.city}</p>}
+                    </label>
+                    <label>
+                        <span>State / County </span>
+                        <Field type="text"  validate={required} name="state"/>
+                        {errors.state && touched.state &&
+                        <p className="text-danger d-flex align-items-start">{errors.state}</p>}
+                    </label>
+                    <label>
+                        <span>Country </span>
+                        <Field as="select"  validate={required} name="selection" >
                             <option value="select">Select a country...</option>
                             <option value="AFG">Afghanistan</option>
                             <option value="ALA">Åland Islands</option>
@@ -287,40 +396,27 @@ const ShippingCart = () => {
                             <option value="YEM">Yemen</option>
                             <option value="ZMB">Zambia</option>
                             <option value="ZWE">Zimbabwe</option>
-                        </select>
+                        </Field>
+                        {errors.selection && touched.selection &&
+                        <p className="text-danger d-flex align-items-start">{errors.selection}</p>}
+                    </label>
+
+                    <label>
+                        <span>Postcode / ZIP</span>
+                        <Field type="text"  validate={required} name="code"/>
+                        {errors.code && touched.code &&
+                        <p className="text-danger d-flex align-items-start">{errors.code}</p>}
                     </label>
                     <label>
-                        <span>Street Address <span className="required">*</span></span>
-                        <input type="text" name="houseadd" placeholder="House number and street name" required/>
+                        <span>Phone</span>
+                        <Field type="tel"   validate={required} name="phone"/>
+                        {errors.phone && touched.phone &&
+                        <p className="text-danger d-flex align-items-start">{errors.phone}</p>}
                     </label>
-                    <label>
-                        <span>&nbsp;</span>
-                        <input type="text" name="apartment" placeholder="Apartment, suite, unit etc. (optional)"/>
-                    </label>
-                    <label>
-                        <span>Town / City <span className="required">*</span></span>
-                        <input type="text" name="city"/>
-                    </label>
-                    <label>
-                        <span>State / County <span className="required">*</span></span>
-                        <input type="text" name="city"/>
-                    </label>
-                    <label>
-                        <span>Postcode / ZIP <span className="required">*</span></span>
-                        <input type="text" name="city"/>
-                    </label>
-                    <label>
-                        <span>Phone <span className="required">*</span></span>
-                        <input type="tel" name="city"/>
-                    </label>
-                    <label>
-                        <span>Email Address <span className="required">*</span></span>
-                        <input type="email" name="city"/>
-                    </label>
-                </form>
+                </div>
                 <div className="Yorder">
                     <table>
-                        <th colSpan={2}><b>Your order</b></th>
+                        <th colSpan={2} className="payment"><b>Your order</b></th>
                         <tbody>
                         {(items || []).map((item, index) => (
                             <tr>
@@ -336,50 +432,64 @@ const ShippingCart = () => {
                             <td><b>SubTotal</b></td>
                             <td><b>${cartPriceTotal}</b></td>
                         </tr>
-
-
                         </tbody>
 
                     </table>
                     <br/>
-
-
                     <div>
-                        <input type="radio" name="dbt" value="dbt" checked/> Direct Bank Transfer
+                        <Field type="radio" name="card" value="0"/> Paypal
                     </div>
-                    <div>
-                        <input type="radio" name="dbt" value="cd"/> Cash on Delivery
-                    </div>
-                        <div className="card-footer">
-                            <h6><b>Payment</b></h6>
-                            <form role="form" onSubmit="event.preventDefault()">
-                                <div className="form-group"><label htmlFor="cardNumber">
-                                    <h6>Card number</h6>
-                                </label>
-                                    <div className="input-group"><input type="text" name="cardNumber" placeholder="Valid card number" maxLength={14} className="form-control position-static " required/>
-                                    </div>
-                                </div>
-                                <div className="row ">
-                                    <div className="col-sm-8 pt-4">
-                                        <div className="form-group"><label><span className="hidden-xs"><h6>Exp Date</h6></span></label>
-                                            <div className="input-group"><input type="number" placeholder="MM" name className="form-control position-static" required/>
-                                            <input type="number" placeholder="YY" name className="form-control position-static" required/></div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-4 pt-4">
-                                        <div className="form-group mb-4"><label data-toggle="tooltip" title="Three digit CV code on the back of your card">
-                                            <h6>CVV <i className="fa fa-question-circle d-inline"/></h6>
-                                        </label> <input type="text" required className="form-control"/></div>
-                                    </div>
-                                </div>
-                            </form>
+
+                    < div >
+                    <Field type="radio" name="card"  value="1"/> Cash on Delivery
                         </div>
-                    <button className='w-100' type="button">Continue to Checkout</button>
+                    {values.card !== "1" &&
+                        <>
+                    <div className="card-footer">
+                        <div className="form-group"><label htmlFor="cardNumber">
+                            <h6>Card number</h6>
+                        </label>
+                            <div className="input-group">
+                                <Field {...getCardNumberProps()} type="text"  name="cardNumber" placeholder="Valid card number" maxLength={14} className="form-control position-static "/>
+                            </div>
+                           <p  className="text-danger card_design">{erroredInputs.cardNumber && erroredInputs.cardNumber}</p>
+
+                        </div>
+                        <div className="row ">
+                            <div className="col-sm-6 pt-4">
+                                <div className="form-group"><label><span className="hidden-xs"><h6>Exp Date</h6></span></label>
+                                    <div className="input-group">
+                                        <input type="number" name="month"  {...getExpiryDateProps()} placeholder="MM/YY"  className="form-control position-static"/>
+                                       </div>
+                                </div>
+                               <p className="text-danger card_design"> {erroredInputs.expiryDate && erroredInputs.expiryDate}</p>
+                            </div>
+                            <div className="col-sm-6 pt-4">
+                                <div className="form-group mb-4"><label data-toggle="tooltip" title="Three digit CV code on the back of your card">
+                                    <h6>CVV <i className="fa fa-question-circle d-inline"/></h6>
+                                </label> <input type="text" name="cvc" {...getCVCProps()}  className="form-control" />
+                                    <p className="text-danger card_design">{erroredInputs.cvc && erroredInputs.cvc}</p>
+                                    </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    </>
+                    }
+
+                            <button className='w-100' type="submit" >Continue to Checkout</button>
+
+
+
                 </div>
                 {/* Yorder */}
 
             </div>
-        </div>
+        </Form>
+                )
+            }}
+        </Formik>
 
     );
 };

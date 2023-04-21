@@ -44,6 +44,7 @@
 }
 .table-wishlist tr td.price {
     font-weight: 600;
+    text-align: start !important;
 }
 .table-wishlist tr td .quanlity {
     position: relative;
@@ -157,3 +158,4 @@
     font-size: 20px;
     color: #212529;
 }
+

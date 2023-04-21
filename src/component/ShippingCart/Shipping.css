@@ -91,10 +91,10 @@ th{
 }
  .shipping_form tr>td:nth-child(1){
     text-align: left;
-    color: #2d2d2a;
+    color: #2d2d2a !important;
 }
- tr>td:nth-child(2){
-    text-align: right;
+tr>td:nth-child(2){
+    text-align: right !important;
     color: dodgerblue;
 }
 td{
@@ -106,7 +106,7 @@ td{
     display: block;
     color: #888;
     margin: 0;
-    padding-left: 25px;
+    /*padding-left: 25px;*/
 }
 .Yorder>div{
     padding: 15px 0;
@@ -126,9 +126,29 @@ button{
 button:hover{
     cursor: pointer;
 }
+.payment{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid gray;
+}
+.error{
+    align-items: end !important;
+}
+
+.card_design {
+    font-size: 15px;
+    display: block;
+
+}
 
 
 
 /******************************************************/
+
+
+
+
+
 
 

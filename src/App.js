@@ -4,6 +4,8 @@ import { BrowserRouter} from "react-router-dom"
 import React from "react";
 import Route from '../src/component/routes/index'
 import AuthProvider from "./component/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
           <BrowserRouter>
               <AuthProvider>
                  <Route/>
+                  <ToastContainer />
               </AuthProvider>
           </BrowserRouter>
       </>
