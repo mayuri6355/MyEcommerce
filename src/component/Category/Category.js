@@ -7,9 +7,6 @@ import authContext from "../AuthProvider/AuthContext";
 import {Link} from "react-router-dom";
 
 
-
-
-
 const Category = () => {
     const {category} = useContext(authContext);
 
@@ -25,16 +22,10 @@ const Category = () => {
                                 </Nav>
                             </Container>
                         </Navbar>
-
                     </div>
-
                 ))}
-
-
             </div>
-
             </>
-
     );
 };
 

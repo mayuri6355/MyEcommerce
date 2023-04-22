@@ -7,7 +7,6 @@ import {Link, useNavigate} from "react-router-dom";
 import {BiShow} from "react-icons/bi";
 import {BiHide} from "react-icons/bi";
 
-
 function validateEmail(value) {
     let error;
     if (!value) {
@@ -19,14 +18,16 @@ function validateEmail(value) {
 }
 
 export const strongPassword = value => {
-    let error;
-    if (value) {
-        if (!/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})/g.test(value)) {
+    if (value)
+    {
+        if (!/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})/g.test(value))
+        {
             return "weak_password"
         }
-    } else {
+    } else
+        {
         return " This Field Required"
-    }
+        }
 }
 
 function Login() {
@@ -54,7 +55,6 @@ function Login() {
             .catch((error) => {
                 console.log(error)
             })
-
     }
     return (
         <div className="Auth-form-container mask d-flex align-items-center h-900 gradient-custom-3">
@@ -90,34 +90,24 @@ function Login() {
                                             className="form-control mt-1"
                                             placeholder="Enter Password"
                                             type={passwordShown ? "text" : "password"}
-                                            validate={strongPassword}
-                                        />
+                                            validate={strongPassword}/>
                                         <i onClick={togglePasswordVisiblity}>{passwordShown ? <BiHide fontSize={25}/> :
                                             <BiShow fontSize={25}/>}</i>{" "}
                                     </div>
-
-                                    {errors.password && touched.password &&
-                                    <p className="text-danger">{errors.password}</p>}
+                                    {errors.password && touched.password && <p className="text-danger">{errors.password}</p>}
                                 </div>
 
                                 <div className="d-grid gap-2 mt-3">
-                                    <button className="btn btn-primary " type="submit"><Link to="/"
-                                                                                             className={"login_btn"}>
-                                        Login</Link>
-                                    </button>
-
-                                    <p className="text-center text-muted mt-5 mb-0">New User? <Link
-                                        to="/signup"
-                                        className="text-body"><u>Create Account</u></Link></p>
-
+                                    <button className="btn btn-primary " type="submit"><Link to="/" className={"login_btn"}>Login</Link></button>
+                                    <p className="text-center text-muted mt-5 mb-0">New User?
+                                        <Link to="/signup" className="text-body"><u>Create Account</u></Link>
+                                    </p>
                                 </div>
-
                             </div>
                         </form>
                     )
                 }}
             </Formik>
-
         </div>
     );
 }

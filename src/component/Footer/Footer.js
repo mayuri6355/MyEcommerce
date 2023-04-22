@@ -33,11 +33,12 @@ const Footer = () => {
 
                                     CIN : U51109KA2012PTC066107
 
-                                    Telephone: 044-45614700</dd>
+                                    Telephone: 044-45614700
+                                </dd>
                             </dl>
                             <dl className="contact-list">
                                 <dt>email:</dt>
-                                <dd><a href="mailto:#">dkstudioin@gmail.com</a></dd>
+                                <dd><a href="mailto:#">Flipkart@gmail.com</a></dd>
                             </dl>
                             <dl className="contact-list">
                                 <dt>phones:</dt>
@@ -64,9 +65,6 @@ const Footer = () => {
                     <div className="col"><a className="social-inner" href="#"><span className="icon mdi mdi-youtube-play" /><span>google</span></a></div>
                 </div>
             </footer>
-
-
-
         </div>
     );
 };

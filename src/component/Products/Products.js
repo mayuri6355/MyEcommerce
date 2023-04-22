@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import './Products.css'
-
-import {Link, useParams} from "react-router-dom"
+import {Link} from "react-router-dom"
 import {AiOutlineHeart} from "react-icons/ai";
 import {AiFillHeart} from "react-icons/ai";
 
@@ -10,7 +9,6 @@ import {AiFillHeart} from "react-icons/ai";
 const Products = () => {
     const [product, setProduct] = useState("")
     const [wish, setWish] = useState(JSON.parse(localStorage.getItem("wish")) || []);
-
     const selectWish = (wish || []).map((e) => e.id);
 
     const addToWishList = (item = {},index) => {
@@ -19,13 +17,11 @@ const Products = () => {
             list.splice(index, 1);
             setWish([...list]);
              localStorage.setItem("wish", JSON.stringify([...list]))
-
         } else {
             setWish((prev) => ([...prev,item]));
             localStorage.setItem("wish", JSON.stringify([...wish, item]))
         }
     };
-
 
     let initialized=false;
     useEffect(() => {
@@ -40,7 +36,6 @@ const Products = () => {
             })
         }
     }, [])
-
 
     return (
         <div>
@@ -82,7 +77,6 @@ const Products = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 

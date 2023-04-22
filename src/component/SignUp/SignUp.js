@@ -53,7 +53,6 @@ const SignUp = (e) => {
         })
     }
 
-
     return (
         <div>
             <section className="vh-100 bg-image">
@@ -78,10 +77,8 @@ const SignUp = (e) => {
                                                 return (
 
                                                     <form onSubmit={handleSubmit}>
-
                                                         <div className="form-outline mb-1">
-                                                            <label className="form-label" htmlFor="form3Example1cg">Your
-                                                                Name</label>
+                                                            <label className="form-label" htmlFor="form3Example1cg">Your Name</label>
                                                             <Field type="text" id="form3Example1cg"
                                                                    name="name"
                                                                    validate={required}
@@ -91,8 +88,7 @@ const SignUp = (e) => {
                                                         </div>
 
                                                         <div className="form-outline mb-1">
-                                                            <label className="form-label" htmlFor="form3Example3cg">Your
-                                                                Email</label>
+                                                            <label className="form-label" htmlFor="form3Example3cg">Your Email</label>
                                                             <Field type="email" id="form3Example3cg"
                                                                    name="email"
                                                                    validate={validateEmail}
@@ -102,8 +98,7 @@ const SignUp = (e) => {
                                                         </div>
 
                                                         <div className="form-outline mb-1">
-                                                            <label className="form-label"
-                                                                   htmlFor="form3Example4cg">Password</label>
+                                                            <label className="form-label" htmlFor="form3Example4cg">Password</label>
                                                             <div className="pass-wrapper">
                                                             <Field type={passwordShown ? "text" : "password"}
                                                                    id="form3Example4cg"
@@ -115,12 +110,9 @@ const SignUp = (e) => {
                                                             </div>
                                                             {errors.password && touched.password &&
                                                             <p className="text-danger d-flex align-items-start">{errors.password}</p>}
-
                                                         </div>
 
-
-                                                        <div
-                                                            className="form-check d-flex justify-content-left mb-7 mt-3">
+                                                        <div className="form-check d-flex justify-content-left mb-7 mt-3">
                                                             <Field
                                                                 type="checkbox"
                                                                 className="form-check-input me-2"
@@ -128,27 +120,19 @@ const SignUp = (e) => {
                                                                 validate={required}
                                                                 id="form2Example3cg"
                                                             />
-                                                            <label className="form-check-label"
-                                                                   htmlFor="form2Example3g">
-                                                                I agree all statements in <Link to="#!"
-                                                                                             className="text-body"><u>Terms
-                                                                of service</u></Link>
+                                                            <label className="form-check-label" htmlFor="form2Example3g">
+                                                                I agree all statements in <Link to="#!" className="text-body"><u>Terms of service</u></Link>
                                                             </label>
                                                         </div>
                                                             {errors.agree_policy && touched.agree_policy &&
                                                             <p className="text-danger d-flex align-items-start">{errors.agree_policy}</p>}
 
                                                         <div className="d-grid gap-2 mt-5">
-                                                            <button type="submit"
-                                                                    className="btn btn-success ">Register
-                                                            </button>
+                                                            <button type="submit" className="btn btn-success ">Register</button>
                                                         </div>
 
-                                                        <p className="text-center text-muted mt-5 mb-0">Have already an
-                                                            account? <Link
-                                                                to="/login"
-                                                                className="fw-bold text-body"><u>Login here</u></Link></p>
-
+                                                        <p className="text-center text-muted mt-5 mb-0">Have already an account?
+                                                            <Link to="/login" className="fw-bold text-body"><u>Login here</u></Link></p>
                                                     </form>
                                                 )
                                             }}
@@ -163,5 +147,4 @@ const SignUp = (e) => {
         </div>
     )
 };
-
 export default SignUp;

@@ -4,15 +4,12 @@ import axios from "axios";
 
 
 const AuthProvider = ({children}) => {
-
     const [category, setCategory] = useState("")
-
 
     let initialized = false;
     useEffect(() => {
         if (!initialized) {
             initialized = true
-
             axios.get("https://api.escuelajs.co/api/v1/categories/")
                 .then((response) => {
                     setCategory(response.data);
@@ -20,9 +17,7 @@ const AuthProvider = ({children}) => {
                 console.log(error)
             })
         }
-
     }, [])
-
 
 
     const values = {category};

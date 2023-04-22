@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import Navigation from "../Navbar";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
-import {BsFillBasket3Fill} from "react-icons/bs";
 import "./Categorydetails.css"
 import authContext from "../AuthProvider/AuthContext";
 import MultiRangeSlider from "multi-range-slider-react";
@@ -32,7 +31,6 @@ function CategoryDetails() {
             localStorage.setItem("wish", JSON.stringify([...wish, item]))
         }
     };
-
 
     const handleInput = (e) => {
         set_minValue(e.minValue);

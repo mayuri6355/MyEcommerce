@@ -43,11 +43,9 @@ const ProductDetails = () => {
     const addToCart = (productDetails = {}) => {
         setItems((prev) => ([...prev, productDetails]));
         localStorage.setItem("items", JSON.stringify([...items, productDetails]))
-
     };
 
     const selectProduct = (items || []).map((e) => e.id)
-
 
     return (
         <div>
@@ -114,30 +112,22 @@ const ProductDetails = () => {
                         <div className="product-detail">
                             <h2>about this item: </h2>
                             <p>{productDetails?.description}</p>
-
                         </div>
                         <div className="purchase-info">
-
-
                             <div className="w-100">
-
                                 <Link>
-
                                     <button type="button" className="btn"
                                             disabled={selectProduct.includes(Number(params.id))}
                                             onClick={() => addToCart(productDetails)}>
                                         Add to Cart <HiShoppingCart fontSize={30}/>
                                     </button>
-
                                 </Link>
-
                             </div>
 
                             <div className="w-100">
                                 <Link to="/login">
                                     <button type="button" className="btn">Buy Now</button>
                                 </Link>
-
                             </div>
                         </div>
                     </div>
@@ -145,7 +135,6 @@ const ProductDetails = () => {
             </div>
             <Footer/>
         </div>
-
     );
 };
 

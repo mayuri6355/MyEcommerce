@@ -53,16 +53,11 @@ function Navigation() {
                             </Navbar.Brand>
 
                             <Link className="cart" to="/addtocart"><HiShoppingCart fontSize={40}/>
-
                                 {(items || []).length !== 0 &&
                                 <span className="cart-count">{items.length}</span>
                                 }
-
                                 <Link to="/wishlist" className="wish"><AiOutlineHeart fontSize={35}/></Link>
-
                             </Link>
-
-
                         </Nav>
                         <Form className="search d-flex">
                             <Select
@@ -93,9 +88,7 @@ function Navigation() {
                     </div>
                 </Container>
             </Navbar>
-            {/*<Category {...props}/>*/}
         </div>
     );
 }
-
 export default Navigation;

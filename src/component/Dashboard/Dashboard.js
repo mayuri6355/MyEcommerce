@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import './Dashboard.css';
 import Navigation from "../Navbar";
 import Slider from "./Slider";
@@ -7,10 +7,7 @@ import Category from "../Category/Category";
 import Footer from "../Footer/Footer";
 
 
-
-
 export default function Dashboard() {
-
     return (
         <div>
             <Navigation/>
@@ -18,8 +15,6 @@ export default function Dashboard() {
             <Slider />
             <Products/>
             <Footer/>
-
-
         </div>
     )
 }
