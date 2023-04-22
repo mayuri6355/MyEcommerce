@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './WishList.css'
 import Navigation from "../Navbar";
 
@@ -13,31 +13,14 @@ const WishList = () => {
         setWishData([...wishData]);
         localStorage.setItem("wish", JSON.stringify([...wishData]))
     }
-    const selectWish = (wish || []).map((e) => e.id);
+
 
     const addToCart = (wishData = {}, index) => {
-
             setItems((prev) => ([...prev, wishData]));
             localStorage.setItem("items", JSON.stringify([...items, wishData]))
         removeFromWishList();
 
     };
-
-
-
-    //
-    // const addToWishList = (item = {},index) => {
-    //     if (selectWish.includes(item.id)) {
-    //         let list = wish;
-    //         list.splice(index, 1);
-    //         setWish([...list]);
-    //         localStorage.setItem("wish", JSON.stringify([...list]))
-    //
-    //     } else {
-    //         setWish((prev) => ([...prev,item]));
-    //         localStorage.setItem("wish", JSON.stringify([...wish, item]))
-    //     }
-    // };
 
     return (
         <div>
@@ -54,8 +37,6 @@ const WishList = () => {
                                         <th width="45%" style={{fontWeight: "bold"}}>Product Name</th>
                                         <th width="15%" style={{fontWeight: "bold"}}><b>Unit Price</b></th>
                                         <th width="15%" style={{fontWeight: "bold"}}><b>Stock Status</b></th>
-                                        {/*<th width="15%">Actions</th>*/}
-                                        {/*<th width="10%"></th>*/}
                                     </tr>
                                     </thead>
 
@@ -65,9 +46,7 @@ const WishList = () => {
                                             <td width="45%">
                                                 <div className="display-flex align-center">
                                                     <div className="img-product">
-                                                        <img
-                                                            src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
-                                                            alt="" className="mCS_img_loaded"/>
+                                                        <img src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg" alt="" className="mCS_img_loaded"/>
                                                     </div>
                                                     <div className="name-product">
                                                         {item.title}
@@ -77,25 +56,18 @@ const WishList = () => {
                                             <td width="15%" className="price">${item.price}</td>
                                             <td width="15%"><span className="in-stock-box">In Stock</span></td>
                                             <td width="15%">
-                                                <button className="round-black-btn small-btn"
-                                                        onClick={() => addToCart(item)}>Add to Cart
-                                                </button>
-                                                <button className="round-red-btn small-btn"
-                                                        onClick={() => removeFromWishList(index)}>Remove to WishList
-                                                </button>
+                                                <button className="round-black-btn small-btn" onClick={() => addToCart(item)}>Add to Cart</button>
+                                                <button className="round-red-btn small-btn" onClick={() => removeFromWishList(index)}>Remove to WishList</button>
                                             </td>
                                         </tr>
                                         </tbody>
                                     ))}
-
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 };

@@ -27,7 +27,6 @@ function CategoryDetails() {
             list.splice(index, 1);
             setWish([...list]);
             localStorage.setItem("wish", JSON.stringify([...list]))
-
         } else {
             setWish((prev) => ([...prev,item]));
             localStorage.setItem("wish", JSON.stringify([...wish, item]))
@@ -44,8 +43,6 @@ function CategoryDetails() {
     useEffect(() => {
         if (!initialized) {
             initialized = true;
-
-
             axios.get(`https://api.escuelajs.co/api/v1/products?categoryId=${params.id}`)
                 .then((response) => {
                     setData(response.data);
@@ -54,7 +51,6 @@ function CategoryDetails() {
                     console.log(error)
                 })
         }
-
     }, [params])
 
     const FilterHandle = (e) => {
@@ -75,14 +71,11 @@ function CategoryDetails() {
                 <h2 className="product">Our Products</h2>
                 <div className="shell1 ">
                     <div className="container">
-
                         <div className="d-flex">
                             <div>
                                 <aside>
-
                                     <p> Filters </p>
                                     <div className="rangeslider_container">
-
                                         <div>
                                             <MultiRangeSlider
                                                 style={{color: "black", border: 'none', boxShadow: 'none'}}
@@ -108,11 +101,7 @@ function CategoryDetails() {
                                     {(category || []).map((item, index) => (
                                         <Link to={`/categorydetails/${item.id}`}> {item.name}  </Link>
                                     ))}
-
-
                                 </aside>
-
-
                             </div>
                             <div className="social">
                                 <Link to="https://www.linkedin.com/in/florin-cornea-b5118057/" target="_blank">
@@ -137,15 +126,17 @@ function CategoryDetails() {
                                                     <h3>{item.title}</h3>
                                                 </div>
                                                 <div className="card-footer">
-                                                    <div className="wcf-left"><span
-                                                        className="price">{item.price}$</span></div>
-                                                    <div className="wcf-right"><Link to="" className="">
+                                                    <div className="wcf-left">
+                                                        <span className="price">{item.price}$</span>
+                                                    </div>
+                                                    <div className="wcf-right">
+                                                        <Link to="" className="">
                                                         {selectWish.includes(item.id)
                                                             ? <AiFillHeart onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
                                                             :  <AiOutlineHeart  onClick={()=>addToWishList(item)} style={{color:"red"}} fontSize={35}/>
                                                         }
-
-                                                    </Link></div>
+                                                    </Link>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -153,14 +144,11 @@ function CategoryDetails() {
                                 ))}
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
             }
             <Footer/>
-
         </div>
     );
 }

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './AddToCart.css';
 import Navigation from "../Navbar";
 import Nodata from "../NoData/Nodata";
@@ -48,7 +48,6 @@ const AddToCart = () => {
     return (
         <div>
             <div className="App">
-
                 <Navigation/>
                 {(items || []).length === 0 && <Nodata/>}
                 {(items || []).length !== 0 &&
@@ -61,7 +60,6 @@ const AddToCart = () => {
                                         <h5 className="mb-0 " style={{fontWeight:"bold"}}>Add To Cart items</h5>
                                     </div>
                                     <div className="card-body d-grid gap-2">
-
                                         {/* Single item */}
 
                                         {(items || []).map((item, index) => (
@@ -70,12 +68,9 @@ const AddToCart = () => {
                                                     {/* Image */}
                                                     <div className="bg-image hover-overlay hover-zoom ripple rounded"
                                                          data-mdb-ripple-color="light">
-                                                        <img
-                                                            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp"
-                                                            className="w-100" alt="Blue Jeans Jacket"/>
+                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/12a.webp" className="w-100" alt="Blue Jeans Jacket"/>
                                                         <a href="#!">
-                                                            <div className="mask"
-                                                                 style={{backgroundColor: 'rgba(251, 251, 251, 0.2)'}}/>
+                                                            <div className="mask" style={{backgroundColor: 'rgba(251, 251, 251, 0.2)'}}/>
                                                         </a>
                                                     </div>
                                                     {/* Image */}
@@ -88,15 +83,9 @@ const AddToCart = () => {
                                                             data-mdb-toggle="tooltip" title="Remove item"
                                                             onClick={() => removeFromCart(index)}>Remove
                                                     </button>
-                                                   {/*<Link*/}
-                                                   {/*     data-original-title="Save to Wishlist" title="" href=""*/}
-                                                   {/*     className="btn btn-light" data-toggle="tooltip" data-abc="true">*/}
-                                                   {/*     <CiHeart onClick={()=>addToWishList(item)}*/}
-                                                   {/*         fontSize={20} /></Link>*/}
                                                     </td>
-
-
                                                     {/* Data */}
+
                                                 </div>
                                                 <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                                     {/* Quantity */}
@@ -105,15 +94,11 @@ const AddToCart = () => {
                                                                 onClick={() => increment(index)}>+
                                                         </button>
                                                         <div className="form-outline">
-                                                            <input id="form1" value={item.totalItems || 1} type="number"
-                                                                   disabled
-                                                                   className="form-control mt-2"/>
-                                                            <label className="form-label text-align-center"
-                                                                   htmlFor="form1">Quantity</label>
+                                                            <input id="form1" value={item.totalItems || 1} type="number" disabled className="form-control mt-2"/>
+                                                            <label className="form-label text-align-center" htmlFor="form1">Quantity</label>
                                                         </div>
                                                         <button className="btn btn-primary px-3 ms-2 addtocart_btn"
                                                                 onClick={() => Decrement(index)}>-
-
                                                         </button>
                                                     </div>
                                                     {/* Quantity */}
@@ -125,26 +110,20 @@ const AddToCart = () => {
                                                 </div>
                                             </div>
                                         ))}
-                                        {/* Single item */}
+
                                         <hr className="my-4"/>
-                                        {/* Single item */}
                                         <div className="row">
-                                            <div
-                                                className="col-lg-12 col-md-12 mb-4 mb-lg-0 d-flex align-items-center justify-content-start ">
-                                                <Link to="/" style={{color: "black",}}><BsArrowLeft fontSize={30}/>Back
-                                                    To HomePage</Link>
+                                            <div className="col-lg-12 col-md-12 mb-4 mb-lg-0 d-flex align-items-center justify-content-start ">
+                                                <Link to="/" style={{color: "black",}}><BsArrowLeft fontSize={30}/>Back To HomePage</Link>
                                             </div>
 
-                                            <div
-                                                className="col-lg-12 col-md-12 mb-4 mb-lg-0 d-flex align-items-center justify-content-end ">
+                                            <div className="col-lg-12 col-md-12 mb-4 mb-lg-0 d-flex align-items-center justify-content-end ">
                                                 <button className="clear-cart btn btn-danger"
                                                         onClick={() => clearCart()}>Clear Cart
                                                 </button>
                                             </div>
                                         </div>
-                                        {/* Single item */}
                                     </div>
-
                                 </div>
                                 <div className="card mb-4">
                                     <div className="card-body">
@@ -152,16 +131,12 @@ const AddToCart = () => {
                                         <p className="mb-0">{date}</p>
                                     </div>
                                 </div>
-                                <div className="card mb-4 mb-lg-0">
-
-                                </div>
+                                <div className="card mb-4 mb-lg-0"></div>
                             </div>
                             <div className="col-md-4">
                                 <div className="card mb-4">
-                                    <div className="card-header py-3">
-                                    </div>
+                                    <div className="card-header py-3"></div>
                                     <div className="card-body">
-
                                         <div>
                                             <table>
                                                 <th colSpan={2}><b>Summary</b></th>
@@ -180,13 +155,9 @@ const AddToCart = () => {
                                                     <td><b>SubTotal</b></td>
                                                     <td><b>${cartPriceTotal}</b></td>
                                                 </tr>
-
-
                                                 </tbody>
-
                                             </table>
                                         </div>
-
                                         <Link to="/shippingcart">
                                             <button type="button" className="btn btn-success btn-md btn-block">
                                                 Go to checkout
@@ -195,7 +166,6 @@ const AddToCart = () => {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </section>
