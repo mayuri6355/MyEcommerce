@@ -64,7 +64,7 @@ const AddToCart = () => {
 
                                         {(items || []).map((item, index) => (
                                             <div className="row">
-                                                <div key={index} className="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                                <div key={index} className="col-lg-4 col-md-4 col-sm-4">
                                                     {/* Image */}
                                                     <div className="bg-image hover-overlay hover-zoom ripple rounded"
                                                          data-mdb-ripple-color="light">
@@ -75,7 +75,7 @@ const AddToCart = () => {
                                                     </div>
                                                     {/* Image */}
                                                 </div>
-                                                <div className="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                                <div className="col-lg-4 col-md-4 col-sm-3">
                                                     {/* Data */}
                                                     <p className="mt-2 "><strong>{item.title}</strong></p>
                                                     <td className="text-right d-none d-md-block">
@@ -87,7 +87,7 @@ const AddToCart = () => {
                                                     {/* Data */}
 
                                                 </div>
-                                                <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                                <div className="col-lg-4 col-md-3 col-sm-3 mb-lg-0">
                                                     {/* Quantity */}
                                                     <div className="d-flex mb-4 mt-5" style={{maxWidth: 300}}>
                                                         <button className="btn btn-primary px-3 me-2 addtocart_btn"

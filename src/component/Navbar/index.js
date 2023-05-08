@@ -6,7 +6,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import flipkart from '../../img/flipkart.png';
 import '../Navbar/Navigation.css';
 import {HiShoppingCart} from "react-icons/hi"
-import axios from "axios";
 import Select from "react-select";
 import {Link, useNavigate} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
@@ -33,24 +32,25 @@ function Navigation() {
 
     return (
         <div>
-            <Navbar className="sticky-top" bg="primary" expand="lg">
+
+            <Navbar className="navbar navbar-expand-lg" bg="primary" expand="lg">
                 <Container fluid>
                     <Navbar.Toggle aria-controls="navbarScroll"/>
+                    <Navbar.Brand>
+                        <Link to="/">
+                            <img
+                                src={flipkart}
+                                width="100"
+                                height="30"
+                                className="logo d-inline-block align-top"
+                                alt="React Bootstrap"
+                            />
+                        </Link>
+                    </Navbar.Brand>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
                             className="my-2 my-lg-0"
                             style={{maxHeight: '100px'}}>
-                            <Navbar.Brand className="logo_container">
-                                <Link to="/">
-                                    <img
-                                        src={flipkart}
-                                        width="100"
-                                        height="30"
-                                        className="logo d-inline-block align-top "
-                                        alt="React Bootstrap"
-                                    />
-                                </Link>
-                            </Navbar.Brand>
 
                             <Link className="cart" to="/addtocart"><HiShoppingCart fontSize={40}/>
                                 {(items || []).length !== 0 &&

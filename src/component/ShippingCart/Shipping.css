@@ -27,6 +27,9 @@ body{
 /*    border-radius: 0 0 5px 5px;*/
 /*    padding: 25px;*/
 /*}*/
+
+
+
 .form1{
     flex: 4;
 }
@@ -62,7 +65,7 @@ h2{
 }
 .shipping_form input[type="text"],.shipping_form input[type="tel"],.shipping_form input[type="email"], select
 {
-    width: 70% !important;
+    width: 100% !important;
     height: 30px;
     padding: 5px 10px;
     margin-bottom: 10px;
@@ -85,6 +88,8 @@ table{
     margin: 0;
     padding: 0;
 }
+
+
 th{
     border-bottom: 1px solid #dadada;
     padding: 10px 0;
@@ -106,6 +111,7 @@ td{
     display: block;
     color: #888;
     margin: 0;
+    font-size: 14px;
     /*padding-left: 25px;*/
 }
 .Yorder>div{

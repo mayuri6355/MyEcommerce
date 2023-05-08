@@ -12,7 +12,7 @@ const Category = () => {
 
     return (
         <>
-            <div className="d-flex align-items-center justify-content-center p-0">
+            <div className="d-flex  flex-wrap align-items-center justify-content-center p-0">
                 {(category || []).map((item, index) => (
                     <div key={index}>
                         <Navbar variant="light">

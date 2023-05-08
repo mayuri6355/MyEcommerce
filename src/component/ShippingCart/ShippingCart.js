@@ -12,6 +12,7 @@ import {
     CardNumberElement,
     CardExpiryElement,
 } from '@stripe/react-stripe-js';
+import {Col, Row} from "reactstrap";
 
 
 const ShippingCart = () => {
@@ -83,119 +84,158 @@ const ShippingCart = () => {
                 phone: '',
                 card: "0",
                 cardNumber: '',
-                month: '',
                 year: '',
                 cvv: ''
             }}
             onSubmit={(values) => {
-                notify();
-            }}
+                if(values.card === "0"){
+                    if (values.cardNumber.empty === false  && values.year.empty === false && values.cvv.empty === false && values.cardNumber.complete === true) {
+                        return notify();
+                        const {error, paymentMethod} = stripe.createPaymentMethod({
+                            type: 'card',
+                            card: elements.getElement(CardElement),
+                        });
+                        const cardElement = elements.getElement(CardNumberElement);
+
+                        stripe.createToken(cardElement)
+                            .then((payload) => console.log('[token]', payload));
+
+                    }
+
+                }else {
+                    notify();
+                }
+
+                }}
+
         >
+
             {props => {
                 const {handleSubmit, errors, touched, values, setFieldValue} = props;
-                console.log(values)
+                console.log(values.cardNumber)
+
 
                 return (
                     <Form onSubmit={handleSubmit} className="container">
                         <div className="title">
                             <h2>Product Order Form</h2>
                         </div>
-                        <div className="d-flex">
-                            <div className="form1 shipping_form" action method>
+                        <div className="d-flex row col-lg-12">
+                            <Col className="form1 shipping_form">
                                 <label className="payment">Personal Info</label>
-                                <label>
-                                    <span className="fname">First Name </span>
-                                    <Field type="text" validate={required} name="fname"/>
-                                    {errors.fname && touched.fname &&
-                                    <p className="text-danger d-flex align-items-start">{errors.fname}</p>
-                                    }
+                                <label className="d-flex row">
+                                    <div className="fname text-nowrap col-2">First Name</div>
+                                    <div className="col-10">
+                                        <Field type="text" validate={required} name="fname"/>
+                                        {errors.fname && touched.fname &&
+                                        <p className="text-danger d-flex align-items-start">{errors.fname}</p>
+                                        }
+                                    </div>
+                                </label>
+                                <label className="d-flex row">
+                                    <div className="lname col-2 text-nowrap">Last Name</div>
+                                    <div className="col-10">
+                                        <Field type="text" validate={required} name="lname"/>
+                                        {errors.lname && touched.lname &&
+                                        <p className="text-danger d-flex align-items-start">{errors.lname}</p>
+                                        }
+                                    </div>
+                                </label>
+                                <label className="d-flex row">
+                                    <div className="email text-nowrap col-2">Email Address</div>
+                                    <div className="col-10">
+                                        <Field type="email" validate={validateEmail} name="email"/>
+                                        {errors.email && touched.email &&
+                                        <p className="text-danger d-flex align-items-start">{errors.email}</p>
+                                        }
+                                    </div>
                                 </label>
 
-                                <label>
-                                    <span className="lname">Last Name</span>
-                                    <Field type="text" validate={required} name="lname"/>
-                                    {errors.lname && touched.lname &&
-                                    <p className="text-danger d-flex align-items-start">{errors.lname}</p>
-                                    }
+                                <label className=" d-flex">Shipping Address</label>
+                                <label className="d-flex row">
+                                    <div  className="email text-nowrap col-2">Street Address </div>
+                                    <div className="col-10">
+                                        <Field type="text" validate={required} name="houseadd"
+                                               placeholder="House number and street name"/>
+                                        {errors.houseadd && touched.houseadd &&
+                                        <p className="text-danger d-flex align-items-start">{errors.houseadd}</p>
+                                        }
+                                    </div>
+
+                                </label>
+                                <label className="d-flex row">
+                                    <div className="cn text-nowrap col-2">Company Name</div>
+                                    <div className="col-10">
+                                        <Field type="text" validate={required} name="cn"/>
+                                        {errors.cn && touched.cn &&
+                                        <p className="text-danger d-flex align-items-start">{errors.cn}</p>
+                                        }
+                                    </div>
+
                                 </label>
 
-                                <label>
-                                    <span>Email Address </span>
-                                    <Field type="email" validate={validateEmail} name="email"/>
-                                    {errors.email && touched.email &&
-                                    <p className="text-danger d-flex align-items-start">{errors.email}</p>
-                                    }
+                                <label className="d-flex row">
+                                    <div className="text-nowrap col-2">Town / City </div>
+                                    <div className="col-10">
+                                        <Field type="text" validate={required} name="city"/>
+                                        {errors.city && touched.city &&
+                                        <p className="text-danger d-flex align-items-start">{errors.city}</p>}
+                                    </div>
+
                                 </label>
 
-                                <label className="payment">Shipping Address</label>
-                                <label>
-                                    <span>Street Address </span>
-                                    <Field type="text" validate={required} name="houseadd"
-                                           placeholder="House number and street name"/>
-                                    {errors.houseadd && touched.houseadd &&
-                                    <p className="text-danger d-flex align-items-start">{errors.houseadd}</p>
-                                    }
-                                </label>
-                                <label>
-                                    <span>Company Name</span>
-                                    <Field type="text" validate={required} name="cn"/>
-                                    {errors.cn && touched.cn &&
-                                    <p className="text-danger d-flex align-items-start">{errors.cn}</p>
-                                    }
+                                <label className="d-flex row">
+                                    <div className="col-2 text-nowrap">State / County </div>
+                                    <div className="col-10">
+                                        <Field type="text" validate={required} name="state"/>
+                                        {errors.state && touched.state &&
+                                        <p className="text-danger d-flex align-items-start">{errors.state}</p>}
+                                    </div>
+
                                 </label>
 
-                                <label>
-                                    <span>Town / City </span>
-                                    <Field type="text" validate={required} name="city"/>
-                                    {errors.city && touched.city &&
-                                    <p className="text-danger d-flex align-items-start">{errors.city}</p>}
+                                <label className="d-flex row">
+                                    <div className="text-nowrap col-2">Country </div>
+                                    <div className="col-10">
+                                        <Field as="select" validate={required} name="selection">
+                                            <option value="select">Select a country...</option>
+                                            <option value="GEO">Georgia</option>
+                                            <option value="DEU">Germany</option>
+                                            <option value="GHA">Ghana</option>
+                                            <option value="GIB">Gibraltar</option>
+                                            <option value="GRC">Greece</option>
+                                            <option value="GUY">Guyana</option>
+                                            <option value="HTI">Haiti</option>
+                                            <option value="HMD">Heard Island and McDonald Islands</option>
+                                            <option value="VAT">Holy See (Vatican City State)</option>
+                                            <option value="HND">Honduras</option>
+                                            <option value="HKG">Hong Kong</option>
+                                            <option value="HUN">Hungary</option>
+                                            <option value="ISL">Iceland</option>
+                                            <option value="IND">India</option>
+                                        </Field>
+                                        {errors.selection && touched.selection &&
+                                        <p className="text-danger d-flex align-items-start">{errors.selection}</p>}
+                                    </div>
                                 </label>
 
-                                <label>
-                                    <span>State / County </span>
-                                    <Field type="text" validate={required} name="state"/>
-                                    {errors.state && touched.state &&
-                                    <p className="text-danger d-flex align-items-start">{errors.state}</p>}
+                                <label className="d-flex row">
+                                    <div className="col-2 text-nowrap">Postcode / ZIP</div>
+                                    <div className="col-10">  <Field type="text" validate={required} name="code"/>
+                                        {errors.code && touched.code &&
+                                        <p className="text-danger d-flex align-items-start">{errors.code}</p>}</div>
+
                                 </label>
 
-                                <label>
-                                    <span>Country </span>
-                                    <Field as="select" validate={required} name="selection">
-                                        <option value="select">Select a country...</option>
-                                        <option value="GEO">Georgia</option>
-                                        <option value="DEU">Germany</option>
-                                        <option value="GHA">Ghana</option>
-                                        <option value="GIB">Gibraltar</option>
-                                        <option value="GRC">Greece</option>
-                                        <option value="GUY">Guyana</option>
-                                        <option value="HTI">Haiti</option>
-                                        <option value="HMD">Heard Island and McDonald Islands</option>
-                                        <option value="VAT">Holy See (Vatican City State)</option>
-                                        <option value="HND">Honduras</option>
-                                        <option value="HKG">Hong Kong</option>
-                                        <option value="HUN">Hungary</option>
-                                        <option value="ISL">Iceland</option>
-                                        <option value="IND">India</option>
-                                    </Field>
-                                    {errors.selection && touched.selection &&
-                                    <p className="text-danger d-flex align-items-start">{errors.selection}</p>}
-                                </label>
+                                <label className="d-flex row">
+                                    <div className="text-nowrap col-2">Phone</div>
+                                    <div className="col-10">   <Field type="tel" validate={required} name="phone"/>
+                                        {errors.phone && touched.phone &&
+                                        <p className="text-danger d-flex align-items-start">{errors.phone}</p>}</div>
 
-                                <label>
-                                    <span>Postcode / ZIP</span>
-                                    <Field type="text" validate={required} name="code"/>
-                                    {errors.code && touched.code &&
-                                    <p className="text-danger d-flex align-items-start">{errors.code}</p>}
                                 </label>
-
-                                <label>
-                                    <span>Phone</span>
-                                    <Field type="tel" validate={required} name="phone"/>
-                                    {errors.phone && touched.phone &&
-                                    <p className="text-danger d-flex align-items-start">{errors.phone}</p>}
-                                </label>
-                            </div>
-                            <div className="Yorder">
+                            </Col>
+                            <div className="Yorder col-lg-12">
                                 <table>
                                     <th colSpan={2} className="payment"><b>Your order</b></th>
                                     <tbody>
@@ -227,23 +267,23 @@ const ShippingCart = () => {
                                 {values.card !== "1" &&
                                 <div className="row">
                                     <label>CardNumber</label>
-                                    <div className="col-sm-12">
+                                    <Col className="col-sm-12">
                                         <div style={{
                                             border: "1px solid #dadada",
                                             padding: "6px 4px",
                                         }}>
                                             <CardNumberElement onChange={(value) => setFieldValue("cardNumber", value)}
-                                                                options={{
-                                                                    style: {
-                                                                        base: inputStyle,
-                                                                    },
-                                                                }}
-                                        />
+                                                               options={{
+                                                                   style: {
+                                                                       base: inputStyle,
+                                                                   },
+                                                               }}
+                                            />
                                         </div>
                                         {values.cardNumber === "" && touched.cardNumber &&
-                                        <p className="text-danger d-flex align-items-start">This Field is Required</p>}
-                                        <p className="text-danger d-flex align-items-start"> {values.cardNumber.error?.message}</p>
-                                    </div>
+                                        <p className="text-danger d-flex align-items-start fw-bold "style={{fontSize:14}}>This Field is Required</p>}
+                                        <p className="text-danger d-flex align-items-start fw-bold "style={{fontSize:14}}> {values.cardNumber.error?.message}</p>
+                                    </Col>
 
                                     <div className="col-sm-6">
                                         <label className="mt-2">Expairy Date</label>
@@ -261,8 +301,8 @@ const ShippingCart = () => {
                                             />
                                         </div>
                                         {values.year === "" && touched.year &&
-                                        <p className="text-danger d-flex align-items-start">This Field is Required</p>}
-                                        <p className="text-danger d-flex align-items-start"> {values.year.error?.message}</p>
+                                        <p className="text-danger d-flex align-items-start fw-bold"style={{fontSize:14}}>This Field is Required</p>}
+                                        <p className="text-danger d-flex align-items-start fw-bold " style={{fontSize:14}}> {values.year.error?.message}</p>
                                     </div>
 
                                     <div className="col-sm-6">
@@ -281,7 +321,7 @@ const ShippingCart = () => {
                                             />
                                         </div>
                                         {values.cvv === "" && touched.cvv &&
-                                        <p className="text-danger d-flex align-items-start">This Field is Required</p>}
+                                        <p className="text-danger d-flex align-items-start fw-bold " style={{fontSize:14}}>This Field is Required</p>}
                                     </div>
                                 </div>
                                 }

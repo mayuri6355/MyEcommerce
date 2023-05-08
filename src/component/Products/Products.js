@@ -40,12 +40,12 @@ const Products = () => {
     return (
         <div>
             <h2 className="product">Our Products</h2>
-            <div className="d-flex align-items-center justify-content-center p-0">
+            <div className="d-flex  align-items-center justify-content-center p-0">
                 <div className="shell">
                     <div className="container">
                         <div className="row">
                             {(product || []).map((item, index) => (
-                                <div key={index} className="col-md-3">
+                                <div key={index} className="col-md-3 col-sm-6 ">
                                     <div className="wsk-cp-product">
                                         <div className="wsk-cp-img">
                                             <Link to={`/productdetails/${item.id}`}>
